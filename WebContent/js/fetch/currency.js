@@ -9,19 +9,19 @@ class Currency {
 
     exchange() {
         return new Promise((resolve, reject) => {
-           fetch(this.url + this.firstCurrency)
-               .then(response => {
-                   if (!response.ok)
-                       throw new Error("An error occurred!");
+            fetch(this.url + this.firstCurrency)
+                .then(response => {
+                    if (!response.ok)
+                        throw new Error("An error occurred!");
 
-                   return response.json();
-               })
-               .then(data => {
-                   const parity = data["rates"][this.secondCurrency];
-                   const result = Number(this.amount) * parity;
-                   resolve(result);
-               })
-               .catch(err => reject(err));
+                    return response.json();
+                })
+                .then(data => {
+                    const parity = data["rates"][this.secondCurrency];
+                    const result = Number(this.amount) * parity;
+                    resolve(result);
+                })
+                .catch(err => reject(err));
         });
     }
 
