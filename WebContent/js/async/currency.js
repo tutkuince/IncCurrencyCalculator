@@ -24,6 +24,6 @@ class Currency {
     }
 
     changeSecondCurrency(newSecondCurrency) {
-        this.firstCurrency = newSecondCurrency;
+        this.secondCurrency = newSecondCurrency;
     }
 }
