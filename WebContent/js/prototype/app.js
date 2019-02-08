@@ -12,20 +12,23 @@ function eventListeners() {
 
     firstCurrency.onchange = function () {
         currency.changeFirstCurrency(firstCurrency.value);
+        ui.changeUI(firstCurrency);
     };
 
     secondCurrency.onchange = function () {
         currency.changeSecondCurrency(secondCurrency.value);
+        ui.changeUI(secondCurrency);
     }
 }
 
 const currency = new Currency(firstCurrency.value, secondCurrency.value);
+const ui = new UI();
 
 function exchangeCurrency() {
     currency.changeAmount(amount.value);
     currency.exchange(function (err, response) {
         if (err === null)
-            console.log(response);
+            ui.displayResult(response);
         else
             console.log(err);
     });
