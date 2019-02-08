@@ -10,17 +10,20 @@ function eventListeners() {
     amount.addEventListener("input", exchangeCurrency);
     firstCurrency.onchange = function () {
         currency.changeFirstCurrency(firstCurrency.value);
+        ui.changeUI(firstCurrency);
     };
     secondCurrency.onchange = function () {
         currency.changeSecondCurrency(secondCurrency.value);
+        ui.changeUI(secondCurrency);
     };
 }
 
 const currency = new Currency(firstCurrency.value, secondCurrency.value);
+const ui = new UI();
 
 function exchangeCurrency() {
     currency.changeAmount(amount.value);
     currency.exchange()
-        .then(response => console.log(response))
+        .then(response => ui.displayResult(response))
         .catch(err => console.log(err));
 }
