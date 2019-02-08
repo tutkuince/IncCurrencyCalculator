@@ -12,8 +12,8 @@ Currency.prototype.exchange = function (callback) {
 
     this.xhr.onload = () => {
         if (this.xhr.status) {
-            const response = JSON.parse(this.xhr.responseText);
-            const parity = response.rates[this.secondCurrency];
+            const data = JSON.parse(this.xhr.responseText);
+            const parity = data["rates"][this.secondCurrency];
             const result = this.amount * parity;
             callback(null, result);
         } else {
