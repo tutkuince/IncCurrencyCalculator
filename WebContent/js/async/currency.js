@@ -9,7 +9,21 @@ class Currency {
 
     async exchange() {
         const response = await fetch(this.url + this.firstCurrency);
-        const data = response.json();
-        console.log(data);
+        const data = await response.json();
+        const parity = data["rates"][this.secondCurrency];
+        const result = Number(this.amount) * parity;
+        return result;
+    }
+
+    changeAmount(newAmount) {
+        this.amount = newAmount;
+    }
+
+    changeFirstCurrency(newFirstCurrency) {
+        this.firstCurrency = newFirstCurrency;
+    }
+
+    changeSecondCurrency(newSecondCurrency) {
+        this.firstCurrency = newSecondCurrency;
     }
 }
