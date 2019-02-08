@@ -9,13 +9,18 @@ eventListeners();
 function eventListeners() {
     amount.addEventListener("input", exchangeCurrency);
     firstCurrency.onchange = function () {
-
+        currency.changeFirstCurrency(firstCurrency.value);
     };
     secondCurrency.onchange = function () {
-
+        currency.changeSecondCurrency(secondCurrency.value);
     };
 }
 
-function exchangeCurrency() {
+const currency = new Currency(firstCurrency.value, secondCurrency.value);
 
+function exchangeCurrency() {
+    currency.changeAmount(amount.value);
+    currency.exchange()
+        .then(response => console.log(response))
+        .catch(err => console.log(err));
 }
