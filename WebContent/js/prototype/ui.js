@@ -10,3 +10,7 @@ UI.prototype.changeUI = function (element) {
     else
         this.outputSecond.innerHTML = element.value;
 }
+
+UI.prototype.displayResult = function (result) {
+    this.outputResult.value = result;
+}
